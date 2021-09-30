@@ -1,0 +1,23 @@
+.content {
+  border: 1px solid #eee;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  background: #fafafa;
+}
+
+.empty {
+  color: #aaa;
+}
+
+.editor {
+  height: 60vh;
+}
+
+.breadcrumbs {
+  padding-left: 0;
+  margin-top: 5px;
+}
+
+.cancel {
+  margin-right: auto!important;
+}

@@ -1,0 +1,7 @@
+.item {
+  cursor: pointer;
+}
+
+.editingItem {
+  background: #FFFAE7 !important;
+}

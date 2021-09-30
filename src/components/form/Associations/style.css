@@ -1,0 +1,13 @@
+.select {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 34px);
+}
+
+.add {
+  padding: 0;
+  display: inline-block;
+  text-align: center;
+  width: 34px;
+  height: 34px;
+}

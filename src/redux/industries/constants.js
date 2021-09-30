@@ -1,0 +1,28 @@
+const prefix = 'industries';
+
+// UI actions
+export const LIST_FILTERS_CHANGE = `${prefix}/LIST_FILTERS_CHANGE`;
+export const NEW_INDUSTRY_FORM_CHANGE = `${prefix}/NEW_INDUSTRY_FORM_CHANGE`;
+export const EDIT_INDUSTRY_FORM_CHANGE = `${prefix}/EDIT_INDUSTRY_FORM_CHANGE`;
+export const DELETE_INDUSTRY_TRIGGER = `${prefix}/DELETE_INDUSTRY_TRIGGER`;
+
+// API actions
+export const LOAD_INDUSTRIES = `${prefix}/LOAD_INDUSTRIES`;
+export const LOAD_INDUSTRIES_SUCCESS = `${prefix}/LOAD_INDUSTRIES_SUCCESS`;
+export const LOAD_INDUSTRIES_FAIL = `${prefix}/LOAD_INDUSTRIES_FAIL`;
+
+export const LOAD_SINGLE_INDUSTRY = `${prefix}/LOAD_SINGLE_INDUSTRY`;
+export const LOAD_SINGLE_INDUSTRY_SUCCESS = `${prefix}/LOAD_SINGLE_INDUSTRY_SUCCESS`;
+export const LOAD_SINGLE_INDUSTRY_FAIL = `${prefix}/LOAD_SINGLE_INDUSTRY_FAIL`;
+
+export const EDIT_INDUSTRY = `${prefix}/EDIT_INDUSTRY`;
+export const EDIT_INDUSTRY_SUCCESS = `${prefix}/EDIT_INDUSTRY_SUCCESS`;
+export const EDIT_INDUSTRY_FAIL = `${prefix}/EDIT_INDUSTRY_FAIL`;
+
+export const CREATE_INDUSTRY = `${prefix}/CREATE_INDUSTRY`;
+export const CREATE_INDUSTRY_SUCCESS = `${prefix}/CREATE_INDUSTRY_SUCCESS`;
+export const CREATE_INDUSTRY_FAIL = `${prefix}/CREATE_INDUSTRY_FAIL`;
+
+export const DELETE_INDUSTRY = `${prefix}/DELETE_INDUSTRY`;
+export const DELETE_INDUSTRY_SUCCESS = `${prefix}/DELETE_INDUSTRY_SUCCESS`;
+export const DELETE_INDUSTRY_FAIL = `${prefix}/DELETE_INDUSTRY_FAIL`;

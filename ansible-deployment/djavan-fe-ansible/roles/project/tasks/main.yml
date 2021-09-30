@@ -1,0 +1,60 @@
+---
+- name: project | set API_URL
+  lineinfile: 
+    dest: /etc/environment 
+    state: present 
+    regexp: '^API_URL'
+    line: 'API_URL="{{ project.API_URL }}"'
+     
+- name: project | check if pm2 exists
+  stat: path=/etc/systemd/system/pm2-root.service
+  register: service_status
+  
+- name: project | stop pm2
+  systemd:
+    name: pm2-root
+    state: stopped
+  when: service_status.stat.exists
+  register: service_stopped
+
+- name: project | remove "{{ project.root }}"
+  file:
+    path: "{{ project.root }}"
+    state: absent
+
+- name: project | create "{{ project.root }}"
+  file:
+    path: "{{ project.root }}"
+    state: directory
+    
+- name: project | Clone project
+  git:
+    repo: "{{ project.repo }}"
+    dest: "{{ project.root }}"
+    force: true
+    update: no
+    accept_hostkey: true
+    version: "{{ project.repo_branch }}"
+  when: not automated
+    
+- name: project | Unarchive djavan-fe application
+  unarchive:
+    src: files/djavan-fe-source.zip
+    dest: "{{ project.root }}"
+    copy: yes
+  when: automated
+    
+- name: project | Check if logs dir exists
+  file:
+    path: "{{ project.root }}/logs"
+    state: directory
+
+- name: project | set perms on "{{ project.root }}"
+  file:
+    group: "{{ project.group }}"
+    owner: "{{ project.user }}"
+    path: "{{ project.root }}"
+    recurse: yes
+    mode: u=rwX,g=rwX,o=rX
+
+- include: build.yml

@@ -1,0 +1,17 @@
+{
+  "presets":  [["es2015", { "modules": false }], "react", "stage-2"],
+  "plugins": [
+    "jsx-base-component"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        ["istanbul", {
+          "exclude": [
+            "test/**/*.test.js"
+          ]
+        }]
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.overlay {
+  z-index: 10000;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.body {
+  padding: 20px;
+}
+
+.hide {
+  opacity: 0!important;
+}

@@ -1,0 +1,39 @@
+.wrapper {
+  margin-bottom: 1rem;
+}
+
+.item {
+  background: #fff;
+  border: 1px solid #CCD5DB;
+  border-bottom: none;
+  margin-bottom: 0;
+  cursor: pointer;
+  &:last-child {
+    border-bottom: 1px solid #CCD5DB;
+  }
+}
+
+.editingItem {
+  background: #FFFAE7;
+}
+
+.editor {
+  margin-bottom: 0.5rem;
+}
+
+.itemContent {
+  display: inline-block;
+  padding: 0.5rem 10px;
+  width: calc(100% - 38px); /* 100% - (btn width + margin) */
+  vertical-align: top;
+}
+
+.remove {
+  width: 34px;
+  height: 34px;
+  margin: 2px;
+  text-align: center;
+  display: inline-block;
+  padding: 0;
+  border: none;
+}

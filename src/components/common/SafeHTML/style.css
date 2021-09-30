@@ -1,0 +1,5 @@
+.safeHTML {
+  & img {
+    max-width: 100%;
+  }
+}

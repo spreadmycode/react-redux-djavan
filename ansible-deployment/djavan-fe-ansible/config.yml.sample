@@ -1,0 +1,79 @@
+---
+hostname: djavan
+domainname: rhino.lan
+
+#Change from true or false. False will clone repo on the server to deploy code. True does not use git within playbooks and relies on compress source to exist in ./files (Jenkins will automatically put the source there)
+automated: true
+
+# General project variables
+project:
+
+  # The project's name. Generally does not need to be changed
+  # Optional:
+  name: djavan
+
+  # The user below will be created as a Linux account to own the project directory and services like node.js
+  # Recommended: "userPassword" should be changed for security purposes
+  user: djavan
+  userPassword: CHANGE_ME
+
+  # Do not change this - sets the group to share access with services like node.js
+  # IGNORE:
+  group: djavan
+
+  # These directories will be created, they do not need to exist prior to deployment. You may change them if you wish. They are used to hold the "in use" Djavan application files
+  # Optional:
+  root: /opt/djavan
+  
+  # Do not change this - defines the servie listening port for node.js
+  port: 6001
+  host: 0.0.0.0
+  
+  #Specify production or development. This must be in lowercase format!
+  environment: production
+  
+  API_URL: "https://djavan-server-dev.rsl.host/api/v1/"
+   
+  #NPM logging level
+  npm_config_loglevel: info
+  
+  #Only used when automated deploy is false
+  Github project
+  repo: git@bitbucket.org:xander-sereda/djavan-front-end.git
+  repo_branch: master
+
+# Definition of variables for ./roles/nginx/templates/nginx.conf
+nginx:
+
+  # Can be changed to total number of cores plus 1 for better performance
+  # OPTIONAL: usually not necessary
+  worker_processes: 2
+
+#
+#SSL Self Signed certs will only generate if set to true, an existing self signed cert does not exist and if a trusted cert does not exist in ./files/ssl/{{ssl_certs_common_name}}.*
+ssl_certs_generate_self_signed: true
+
+ssl_certs_country: "US"
+ssl_certs_locality: "New York"
+ssl_certs_organization: "Your company"
+ssl_certs_state: "New York"
+ssl_certs_common_name: "{{ hostname }}.{{ domainname }}"
+ssl_certs_days: "365"
+ssl_certs_fields: "/C={{ssl_certs_country}}/ST={{ssl_certs_state}}/L={{ssl_certs_locality}}/O={{ssl_certs_organization}}/CN={{ssl_certs_common_name}}"
+
+ssl_certs_path: "/etc/nginx/ssl/{{ssl_certs_common_name}}"
+ssl_certs_path_owner: "www-data"
+ssl_certs_path_group: "www-data"
+ssl_certs_privkey_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.key"
+ssl_certs_cert_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.pem"
+ssl_certs_csr_path: "{{ssl_certs_path}}/{{ssl_certs_common_name}}.csr"
+ssl_certs_dhparam_path: "{{ssl_certs_path}}/dhparam.pem"
+ssl_certs_mode: "0700"
+
+ssl_certs_local_privkey_path: "./files/ssl/{{ domainname }}.key"
+ssl_certs_local_cert_path: "./files/ssl/{{ domainname }}.pem"
+
+
+ssl_certs_key_size: "2048"
+ssl_certs_generate_dh_param: false
+ssl_certs_dhparam_size: "2048"

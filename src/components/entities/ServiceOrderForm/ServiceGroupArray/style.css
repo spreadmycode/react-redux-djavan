@@ -1,0 +1,12 @@
+.items {
+  composes: container from '../ServiceGroupPrimary/style.css';
+}
+
+.item {
+  border-bottom: 1px solid #CCD5DB;
+  padding-bottom: 1rem;
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}

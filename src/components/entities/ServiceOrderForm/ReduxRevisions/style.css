@@ -1,0 +1,16 @@
+.wrapper {
+  border: 1px solid #ddd;
+  padding: 1rem;
+
+}
+
+.table {
+  border-bottom: 1px solid #ddd;
+}
+
+.row {
+  cursor: pointer;
+  &.active {
+    background: #FFFAE7!important;
+  }
+}

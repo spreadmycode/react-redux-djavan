@@ -1,0 +1,9 @@
+---
+#- name: nodejs | Check if Package is installed
+#  command: node -v
+#  register: is_installed
+#  ignore_errors: true
+
+- name: nodejs | Install node
+  include: packages.yml
+#  when: is_installed.rc != 0

@@ -1,0 +1,15 @@
+.vagrant/
+node_modules
+lint/
+npm-debug.log
+dist
+build
+!/clients/webpack-assets.json
+webpack-assets.json
+.idea
+client/webpack-assets.json
+coverage
+.nyc_output
+.eslintcache
+core
+.DS_Store

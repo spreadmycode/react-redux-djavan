@@ -1,0 +1,47 @@
+.datePicker {
+  width: 100%;
+
+  & :global(.SingleDatePicker) {
+    width: 100%;
+    display: block;
+  }
+
+  & :global(.SingleDatePickerInput) {
+    border-radius: 0.25rem;
+  }
+
+  & :global(.DateInput) {
+    font-size: 1rem;
+    padding: 0;
+    padding: 0;
+    width: calc(100% - 34px);
+  }
+
+  & :global(.SingleDatePickerInput__calendar-icon) {
+    margin: 0;
+    width: 34px;
+  }
+
+  & :global(.DateInput__display-text) {
+  }
+}
+
+.noIcon :global(.DateInput) {
+  width: 100%;
+}
+
+.disabled {
+  cursor: not-allowed;
+
+  & :global(.SingleDatePickerInput), & :global(.DateInput) {
+    background: #eceeef!important;
+  }
+
+  & :global(.SingleDatePickerInput) {
+    border-color: #e4eaec;
+  }
+
+  & :global(.SingleDatePicker) {
+    pointer-events: none;
+  }
+}

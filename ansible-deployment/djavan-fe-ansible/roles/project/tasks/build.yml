@@ -1,0 +1,87 @@
+---
+- name: project | ensure pm2 is not running
+  shell: "pm2 delete all"
+  ignore_errors: true
+  become: true
+  become_user: "{{ project.user }}"
+
+- name: project | ensure pm2 is not running
+  shell: "pm2 delete all"
+  ignore_errors: true
+
+- name: project | remove previous pm2 configuration
+  shell: "pm2 unstartup -u {{ project.user }}"
+  ignore_errors: true
+    
+#- name: project | yarn
+#  shell: yarn
+#  args:
+#    chdir: "{{ project.root }}"
+#  register: yarn
+#  become: true
+#  become_user: "{{ project.user }}"
+    
+#- debug: var=yarn.stdout_lines
+
+- name: project | npm install
+  shell: "npm install --unsafe-perm"
+  args:
+      chdir: "{{ project.root }}"
+  register: npminstall
+  become: true
+  become_user: "{{ project.user }}"
+    
+- debug: var=npminstall.stdout_lines
+
+- name: project | npm run build
+  shell: "npm run build"
+  args:
+      chdir: "{{ project.root }}"
+  register: npmbuild
+  become: true
+  become_user: "{{ project.user }}"
+    
+- debug: var=npmbuild.stdout_lines
+
+- name: project | set perms on "{{ project.root }}"
+  file:
+    group: "{{ project.group }}"
+    owner: "{{ project.user }}"
+    path: "{{ project.root }}"
+    recurse: yes
+    mode: u=rwX,g=rwX,o=rX
+    
+- name: project | pm2
+  shell: "npm install pm2 -g"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2
+- debug: var=pm2.stdout_lines
+
+- name: project | pm2 start
+  shell: "pm2 start --interpreter ./node_modules/.bin/babel-node ./bin/server.js"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2start
+  become: true
+  become_user: "{{ project.user }}"
+    
+- debug: var=pm2start.stdout_lines
+
+- name: project | pm2 startup
+  shell: "pm2 startup systemd -u {{ project.user }} --hp /home/{{ project.user }}"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2startup
+    
+- debug: var=pm2startup.stdout_lines
+
+- name: project | pm2 save
+  shell: "pm2 save"
+  args:
+      chdir: "{{ project.root }}"
+  register: pm2save
+  become: true
+  become_user: "{{ project.user }}"
+    
+- debug: var=pm2save.stdout_lines

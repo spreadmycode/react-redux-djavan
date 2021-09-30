@@ -1,0 +1,34 @@
+body {
+  padding-top: 0;
+}
+
+#nprogress {
+
+}
+
+#nprogress .bar {
+  z-index: 15000 !important;
+}
+
+#nprogress .spinner {
+  top: 15px;
+  right: 15px;
+  position: fixed;
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+
+[disabled] {
+  cursor: not-allowed;
+}
+
+
+.Select.is-disabled > .Select-control {
+  background: #eceeef;
+  cursor: not-allowed;
+  border-color: #e4eaec;
+  color: #464a4c;
+  border-radius: 0.25rem;
+}

@@ -1,0 +1,16 @@
+#!/bin/bash
+#First, copy your public SSH key to /root/.ssh/authorized_keys on the server you will deploy to
+#modify hosts.sample to reflect the IP of the server you will deploy to. 
+#Ensure your public SSH keys have git repo access
+
+USER=root
+
+deploy_project() {
+  ansible-playbook deploy.yml --user=$USER -kK -i hosts
+}
+
+main() {
+  deploy_project
+}
+
+main

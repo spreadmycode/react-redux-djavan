@@ -1,0 +1,24 @@
+.disabled {
+  cursor: not-allowed;
+}
+
+.vote {
+  min-width: 30px;
+  text-align: center;
+}
+
+.voteButton {
+  font-size: 1.5em;
+  display: block;
+  cursor: pointer;
+}
+
+.disabled .voteButton {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.critical .upVoteButton {
+  pointer-events: none;
+  opacity: 0.6;
+}

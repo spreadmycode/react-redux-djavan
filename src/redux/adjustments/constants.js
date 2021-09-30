@@ -1,0 +1,22 @@
+const prefix = 'adjustments';
+
+// UI actions
+export const DELETE_ADJUSTMENT_TRIGGER = `${prefix}/DELETE_ADJUSTMENT_TRIGGER`;
+export const EDIT_ADJUSTMENT_FIELD_CHANGE = `${prefix}/EDIT_ADJUSTMENT_FIELD_CHANGE`;
+
+// API actions
+export const LOAD_ADJUSTMENTS = `${prefix}/LOAD_ADJUSTMENTS`;
+export const LOAD_ADJUSTMENTS_SUCCESS = `${prefix}/LOAD_ADJUSTMENTS_SUCCESS`;
+export const LOAD_ADJUSTMENTS_FAIL = `${prefix}/LOAD_ADJUSTMENTS_FAIL`;
+
+export const EDIT_ADJUSTMENT = `${prefix}/EDIT_ADJUSTMENT`;
+export const EDIT_ADJUSTMENT_SUCCESS = `${prefix}/EDIT_ADJUSTMENT_SUCCESS`;
+export const EDIT_ADJUSTMENT_FAIL = `${prefix}/EDIT_ADJUSTMENT_FAIL`;
+
+export const CREATE_ADJUSTMENT = `${prefix}/CREATE_ADJUSTMENT`;
+export const CREATE_ADJUSTMENT_SUCCESS = `${prefix}/CREATE_ADJUSTMENT_SUCCESS`;
+export const CREATE_ADJUSTMENT_FAIL = `${prefix}/CREATE_ADJUSTMENT_FAIL`;
+
+export const DELETE_ADJUSTMENT = `${prefix}/DELETE_ADJUSTMENT`;
+export const DELETE_ADJUSTMENT_SUCCESS = `${prefix}/DELETE_ADJUSTMENT_SUCCESS`;
+export const DELETE_ADJUSTMENT_FAIL = `${prefix}/DELETE_ADJUSTMENT_FAIL`;

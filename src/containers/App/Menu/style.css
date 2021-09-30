@@ -1,0 +1,36 @@
+.menu {
+  top: 0;
+}
+
+.active {
+  background: rgba(0,0,0,.06);
+}
+
+.active a {
+  color: #fff!important;
+}
+
+.logout {
+  width: 100%!important;
+  cursor: pointer;
+  display: block!important;
+}
+
+
+@media (max-width: 767px) {
+  .menu {
+    left: 0;
+    top: 0;
+    transform: translate3d(0, 0, 0)!important;
+    height: 100%;
+
+  }
+
+  :global(.site-menu-item .icon) {
+    line-height: 60px;
+  }
+
+  :global(.site-menubar-footer) {
+    visibility: visible;
+  }
+}

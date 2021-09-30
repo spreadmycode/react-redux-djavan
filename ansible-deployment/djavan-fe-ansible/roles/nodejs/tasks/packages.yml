@@ -1,0 +1,43 @@
+---
+- name: nodejs | Ensure the system can use the HTTPS transport for APT
+  stat:
+    path: /usr/lib/apt/methods/https
+  register: apt_https_transport
+
+- name: nodejs | Install HTTPS transport for APT
+  apt:
+    pkg: apt-transport-https
+    state: installed
+  when: not apt_https_transport.stat.exists
+
+- name: nodejs | Import the NodeSource GPG key into apt
+  apt_key:
+    url: https://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x1655A0AB68576280
+    id: "68576280"
+    state: present
+
+- name: nodejs | Add NodeSource deb repository
+  apt_repository:
+    repo: 'deb https://deb.nodesource.com/node_{{ version.nodejs_version }} {{ ansible_distribution_release }} main'
+    state: present
+
+- name: nodejs | Add NodeSource deb-src repository
+  apt_repository:
+    repo: 'deb-src https://deb.nodesource.com/node_{{ version.nodejs_version }} {{ ansible_distribution_release }} main'
+    state: present
+
+- name: nodejs | Add NodeSource repository preferences
+  template:
+    src: deb_nodesource_com_node.pref.2
+    dest: /etc/apt/preferences.d/deb_nodesource_com_node.pref
+
+- name: nodejs | Update apt cache Debian
+  apt: update_cache=yes
+  
+- name: nodejs | Install Node.js
+  apt:
+    pkg:
+      - nodejs
+      # npm gets installed at the time nodejs is installed
+      #- npm
+    state: latest

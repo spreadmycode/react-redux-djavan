@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+}
+
+.ex, .eq, .total {
+  padding: 7px 10px;
+}
+
+.total {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.numberOfHours, .unitPrice {
+  min-width: 90px;
+}

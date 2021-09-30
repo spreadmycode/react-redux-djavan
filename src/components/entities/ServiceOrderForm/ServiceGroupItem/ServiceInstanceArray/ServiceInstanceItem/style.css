@@ -1,0 +1,24 @@
+.unitPrice {
+  width: 40%;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.numberOfHours {
+  width: 20%;
+  min-width: 100px;
+  display: inline-block;
+}
+
+.row td {
+  vertical-align: middle;
+}
+
+.date {
+  display: inline-block;
+  width: 85px;
+}
+
+.button {
+  padding: 0.5rem;
+}

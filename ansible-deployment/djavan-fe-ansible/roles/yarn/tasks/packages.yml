@@ -1,0 +1,36 @@
+---
+#- name: "Yarn | Remove GPG"
+#  become: yes
+#  become_user: root
+#  apt_key:
+#    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+#    state: absent
+
+#- name: "Yarn | Ensure Debian package is in sources list"
+#  become: yes
+#  become_user: root
+#  lineinfile:
+#    dest: /etc/apt/sources.list.d/yarn.list
+#    regexp: 'deb http://dl.yarnpkg.com/debian/ stable main'
+#    line: 'deb http://dl.yarnpkg.com/debian/ stable main'
+#    state: present
+
+#- name: "Yarn | Update APT cache"
+#  become: yes
+#  become_user: root
+#  apt:
+#    update_cache: yes
+
+- name: yarn | Remove yarn
+  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=absent"
+  with_items:
+    - yarn
+
+- name: "Yarn | Ensure Debian sources list file does not exists"
+  become: yes
+  become_user: root
+  file:
+    path: /etc/apt/sources.list.d/yarn.list
+    owner: root
+    mode: 0644
+    state: absent

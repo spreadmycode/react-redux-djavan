@@ -1,0 +1,45 @@
+---
+- name: Deploy Djavan Front End
+  hosts: local
+  become: true
+  become_user: root
+  vars_files:
+    - ./group_vars/config.yml
+    - ./group_vars/package-versions.yml
+
+  roles:
+    - hostname
+    - packages
+    - nginx
+    - ansible-role-ssl-certs
+    - nodejs
+    - yarn
+    - project
+
+ 
+- name: Restart Djvana-FE stack
+  hosts: local
+  become: true
+  become_user: root
+  vars_files:
+    - ./group_vars/config.yml
+    - ./group_vars/package-versions.yml
+  tasks:
+
+  - name: stop services
+    service: name="{{item}}" state=stopped
+    with_items:
+      - "pm2-{{ project.user }}"
+      - nginx
+
+
+  - name: start services
+    service: name="{{item}}" state=started enabled=yes
+    with_items:
+      - nginx
+      - "pm2-{{ project.user }}"
+
+  - name: Apply version control
+    shell: apt-mark hold {{item}}
+    with_items:
+      - nginx

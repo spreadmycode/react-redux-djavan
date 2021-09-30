@@ -1,0 +1,39 @@
+- name: packages | Update apt cache Debian
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: packages | FIX Ubuntu 16.04 LTS doesn't come with certain modules, required by ansible
+  raw: apt-get install python-minimal aptitude -y
+
+- name: packages | apt autoremove
+  apt:
+    autoremove: yes
+      
+- name: packages | Update OS packages
+  apt: 
+    upgrade: yes
+
+- name: packages | Install dependencies
+  action: "{{ ansible_pkg_mgr }} pkg={{ item }} state=latest"
+  with_items:
+    - ca-certificates
+    - sendmail
+    - wget
+    - build-essential
+    - g++
+    - git
+    - curl
+    - libssl-dev
+    - python-software-properties
+
+- name: packages | create group "{{ project.group }}"
+  group:
+    name: "{{ project.group }}"
+    #gid: 1000
+    
+- name: packages | create user "{{ project.user }}"
+  user:
+    name: "{{ project.user }}"
+    #uid: 1000
+    createhome: yes
+    generate_ssh_key: yes
+    group: "{{ project.group }}"

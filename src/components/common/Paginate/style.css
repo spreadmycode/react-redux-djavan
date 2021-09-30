@@ -1,0 +1,8 @@
+.pagination {
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.pageLink {
+  cursor: pointer;
+}
